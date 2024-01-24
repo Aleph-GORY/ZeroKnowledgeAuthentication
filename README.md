@@ -1,0 +1,2 @@
+# ZeroKnowledgeAuthentication
+Authentication server using Mathematica ZeroKnowledgeProofs package
