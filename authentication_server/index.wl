@@ -1,3 +1,5 @@
+classicalUser = <||>;
+
 FormFunction[
     {"AuthenticationMethod" -> {
         "classical_authentication", 
