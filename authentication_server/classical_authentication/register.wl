@@ -1,14 +1,10 @@
-classical_user = <|
-    "user" -> None,
-    "pass" -> None
-|>;
-
 pageFunction[choice_Association] := Module[{user, pass},
     user = choice["Username"];
     pass = choice["Password"];
-    classical_user = <|
-        "user" -> user,
-        "pass" -> pass
+    Global`classicalUser = <|
+        "username" -> user,
+        "password" -> pass,
+        "registrationDate" -> DateString[]
     |>;
     Column[{
         Style["New user created", "Section"],
