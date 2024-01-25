@@ -1,37 +1,11 @@
-user = <|
-    "username" -> None,
-    "password" -> None
-|>
-
-demo = FormPage[
-    {"LogIn options" -> {
-        "register", "login", "show_user_information"
+FormFunction[
+    {"LogInOptions" -> {
+        "register", "show_user_information", "login"
     }},
-    pageFunction,
+    HTTPRedirect["classical_authentication/" <> #LogInOptions <> ".wl"] &,
     AppearanceRules -> <|
-        "Title" -> "Classical Authentication demo",
-        "Description" -> "In classical authentication, a private secret is trusted to the server for comparison."
+        "Title" -> "Classical authentication demo",
+        "Description" -> "In classical authentication, a private secret is trusted to the server to be used as proof of authenticity."
     |>,
     PageTheme -> "Red"
-];
-
-pageFunction[choice_Association] := Module[{page},
-    page = choice["LogIn options"];
-    Switch[page,"register",registerPage]
-];
-
-registerPage = Module[{input1 = "", input2 = ""},
-    ExportForm[
-        DynamicModule[{input1 = "", input2 = ""},
-            Column[{
-                "Input 1:",
-                InputField[Dynamic[input1], String],
-                "Input 2:",
-                InputField[Dynamic[input2], String],
-                Dynamic["Current Values: " <> input1 <> ", " <> input2]
-            }]
-        ], "HTMLFragment"]
-];
-
-
-demo
+]
