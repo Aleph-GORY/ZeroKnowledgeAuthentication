@@ -1,27 +1,15 @@
-pageFunction[choice_Association] := Module[{user, pass},
-    user = choice["Username"];
-    pass = choice["Password"];
+apiFunction[params_Association] := Module[{},
     If[
-        user == Global`classicalUser[["username"]] && pass == Global`classicalUser[["password"]],
-        Column[{
-            Style["Welcome back " <> user, "Section"],
-            "Your user information is",
-            Style["Username:   " <> user, Italic],
-            Style["Password:   " <> pass, Italic]
-        }],
-        Column[{
-            Style["Wrong user or password", "Section"],
-            "Introduce the credentials of an existing user."
-        }]
+        And[
+            KeyExistsQ[Global`classicalUsers, params["Username"]],
+            Global`classicalUsers[params["Username"]]["Password"] == params["Password"]
+        ],
+        "Welcome back, " <> params["Username"],
+        "Wrong user or password! Introduce the correct credentials of an existing user."
     ]
 ];
 
-FormPage[
-    {"Username" -> "String", "Password" -> "String"}, 
-    pageFunction, 
-    AppearanceRules -> <|
-        "Title" -> "Login using your password",
-        "Description" -> "In classical authentication, a private secret is trusted to the server to be used as proof of authenticity."
-    |>,
-    PageTheme -> "Red"
+APIFunction[
+    {"Username" -> "String", "Password" -> "String"}, apiFunction, 
+    "JSON"
 ]
