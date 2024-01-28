@@ -1,0 +1,255 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9890,        247]
+NotebookOptionsPosition[      7798,        207]
+NotebookOutlinePosition[      8224,        224]
+CellTagsIndexPosition[      8181,        221]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["ZeroKnowledgeAuthentication Demo", "Title",
+ CellChangeTimes->{{3.9154635623869753`*^9, 
+  3.9154635802104807`*^9}},ExpressionUUID->"f912d3f9-e93a-43aa-a9ab-\
+bc976f2db7ec"],
+
+Cell["\<\
+This notebook demonstrates how a Client can register and authenticate with \
+ZeroKnowledge Proofs paclet. \
+\>", "Subtitle",
+ CellChangeTimes->{{3.915463594235285*^9, 
+  3.915463628970279*^9}},ExpressionUUID->"e4c9baff-fe8d-4e28-83dc-\
+89d946feb8e0"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<ArmandoCruz`ZeroKnowledgeProofs`\>\"", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.915375241781758*^9, 3.915375243995756*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"45aa6525-4244-4d8d-9f63-1284e47de539"],
+
+Cell[CellGroupData[{
+
+Cell["Classical authentication", "Section",
+ CellChangeTimes->{{3.915463666258088*^9, 
+  3.9154636730888433`*^9}},ExpressionUUID->"128df0f9-d75c-4c67-8462-\
+7ba1db285de0"],
+
+Cell["Register a new user in the server.", "Text",
+ CellChangeTimes->{{3.915463713610962*^9, 3.915463722841095*^9}, 
+   3.915472981638412*^9},ExpressionUUID->"02946d72-3b06-4b63-8840-\
+bbcd39dabd6e"],
+
+Cell[BoxData[
+ RowBox[{"URLExecute", "[", 
+  RowBox[{
+  "\"\<localhost:18000/classical_authentication/register.wl\>\"", ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<Username\>\"", "->", "\"\<Galois\>\""}], ",", 
+     RowBox[{"\"\<Password\>\"", "->", "\"\<Evariste\>\""}]}], "}"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.9154637340497847`*^9, 3.915463852143354*^9}, 
+   3.9154643693895597`*^9, {3.915465688946086*^9, 3.9154656953851223`*^9}, {
+   3.915465725641037*^9, 3.9154657315111017`*^9}},
+ CellLabel->"In[54]:=",ExpressionUUID->"cc209a06-3720-4a5c-b644-60d1b1586eff"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"URLExecute", "[", 
+   RowBox[{
+   "\"\<localhost:18000/classical_authentication/register.wl\>\"", ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\"\<Username\>\"", "->", "\"\<Wolfie\>\""}], ",", 
+      RowBox[{"\"\<Password\>\"", "->", "\"\<Spikey\>\""}]}], "}"}]}], 
+   "\[IndentingNewLine]", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"URLExecute", "[", 
+   RowBox[{
+   "\"\<localhost:18000/classical_authentication/register.wl\>\"", ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\"\<Username\>\"", "->", "\"\<Ada\>\""}], ",", 
+      RowBox[{"\"\<Password\>\"", "->", "\"\<\nlovelace\>\""}]}], "}"}]}], 
+   "\[IndentingNewLine]", "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.915465748174779*^9, 3.915465764007065*^9}, {
+  3.915465824309314*^9, 3.915465838293749*^9}},
+ CellLabel->"In[55]:=",ExpressionUUID->"0be50e2e-1022-46a1-8886-1415444f4da5"],
+
+Cell["Authenticate to the server using the username and password.", "Text",
+ CellChangeTimes->{{3.915465919461377*^9, 
+  3.915465970595028*^9}},ExpressionUUID->"bceb8eb7-0ef6-40a8-bcb0-\
+2145864e6966"],
+
+Cell[BoxData[
+ RowBox[{"URLExecute", "[", 
+  RowBox[{
+  "\"\<localhost:18000/classical_authentication/login.wl\>\"", ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<Username\>\"", "->", "\"\<Galois\>\""}], ",", 
+     RowBox[{"\"\<Password\>\"", "->", "\"\<Evariste\>\""}]}], "}"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.9154682425988417`*^9, 3.915468244213438*^9}, {
+  3.915468819880904*^9, 3.915468843687544*^9}},
+ CellLabel->"In[64]:=",ExpressionUUID->"c6cb8050-28b1-4314-9855-cc44b4db8ef0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["ZeroKnowledge authentication", "Section",
+ CellChangeTimes->{{3.915463686705123*^9, 
+  3.915463693130179*^9}},ExpressionUUID->"c8fd9202-ee18-4195-a62e-\
+a7054ed6ae19"],
+
+Cell["Generate a new Zero Knowledge Proof.", "Text",
+ CellChangeTimes->{{3.915472823129444*^9, 3.91547285001545*^9}, 
+   3.9154729885343027`*^9},ExpressionUUID->"0e37ae9d-48ee-4ae2-a3c1-\
+1208929c3154"],
+
+Cell[BoxData[
+ RowBox[{"zkProof", "=", 
+  RowBox[{
+  "GenerateZeroKnowledgeProof", "[", "\"\<Isomorphism\>\"", "]"}]}]], "Input",\
+
+ CellChangeTimes->{{3.915375817217745*^9, 3.915375817863785*^9}},
+ CellLabel->
+  "In[109]:=",ExpressionUUID->"be1589a6-877d-4f35-8ac2-c14420beb8dc"],
+
+Cell["\<\
+The first element of the returned collection is the answer or \
+\[OpenCurlyDoubleQuote]proof\[CloseCurlyDoubleQuote] to the given public \
+problem that must remain private, the public problem can be shared with \
+anyone.\
+\>", "Text",
+ CellChangeTimes->{{3.915472861359928*^9, 
+  3.9154729344946947`*^9}},ExpressionUUID->"d2e66fe5-80ac-4dde-9380-\
+8c42b33be6d6"],
+
+Cell[BoxData[
+ RowBox[{"publicProblem", "=", 
+  RowBox[{
+  "zkProof", "[", "\"\<ZeroKnowledgePublicProblem\>\"", "]"}]}]], "Input",
+ CellChangeTimes->{{3.915472436763752*^9, 3.91547244149126*^9}},
+ CellLabel->
+  "In[111]:=",ExpressionUUID->"0e563d6a-f11f-455c-a1f8-dc061a6f4e8f"],
+
+Cell["Register a new user in the server.", "Text",
+ CellChangeTimes->{{3.915472950254262*^9, 3.9154729943261414`*^9}, 
+   3.915473151189473*^9},ExpressionUUID->"46784cf8-e75c-4ac2-8553-\
+e4a87c3b9af6"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"binaryData", "=", 
+   RowBox[{"BinarySerialize", "@", 
+    RowBox[{"zkProof", "[", "\"\<ZeroKnowledgePublicProblem\>\"", "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"URLExecute", "[", 
+  RowBox[{
+  "\"\<http://localhost:18000/zero_knowledge_authentication/register.wl\>\"", 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<Username\>\"", "->", "\"\<Armando\>\""}], ",", 
+     RowBox[{"\"\<PublicProblem\>\"", "->", 
+      RowBox[{"ExportString", "[", 
+       RowBox[{"binaryData", ",", "\"\<Byte\>\""}], "]"}]}]}], "}"}]}], 
+  "\[IndentingNewLine]", "]"}]}], "Input",
+ CellChangeTimes->{{3.915470133286489*^9, 3.915470174869917*^9}, {
+   3.915470222436336*^9, 3.915470261628571*^9}, {3.91547032000836*^9, 
+   3.915470340723555*^9}, {3.915470380230838*^9, 3.915470381444454*^9}, {
+   3.9154704189001102`*^9, 3.915470431283255*^9}, 3.915470711050658*^9, 
+   3.915470764479231*^9, {3.915471143349223*^9, 3.915471144018724*^9}, {
+   3.915471215496509*^9, 3.915471220545484*^9}, {3.915471293122361*^9, 
+   3.91547129761651*^9}, {3.915471358986423*^9, 3.9154713855190487`*^9}, {
+   3.9154714827749577`*^9, 3.915471517525634*^9}, {3.915471565726047*^9, 
+   3.915471590596182*^9}, 3.915471742253644*^9, 3.915471772540721*^9, {
+   3.915471804395533*^9, 3.9154718054338512`*^9}, {3.9154718524682283`*^9, 
+   3.915471857612111*^9}, {3.915471888507712*^9, 3.9154718896499166`*^9}, {
+   3.915471947937684*^9, 3.915471948161018*^9}, {3.915472009641698*^9, 
+   3.91547200976818*^9}, {3.9154722935106163`*^9, 3.915472294805982*^9}, {
+   3.91547247833154*^9, 3.9154724910858307`*^9}, {3.915473157806877*^9, 
+   3.915473159389328*^9}},
+ CellLabel->
+  "In[116]:=",ExpressionUUID->"fc2b654b-252f-45bc-a7c1-c6fb1e020f2c"],
+
+Cell[CellGroupData[{
+
+Cell["Authenticate to the server", "Subsection",
+ CellChangeTimes->{{3.9154731925803833`*^9, 
+  3.915473206029325*^9}},ExpressionUUID->"9ec8cb8c-12d7-4d93-9f26-\
+690ca1b8ab7d"],
+
+Cell["To authenticate to the server.", "Text",
+ CellChangeTimes->{{3.915473228634665*^9, 
+  3.915473238378634*^9}},ExpressionUUID->"7d5a9fac-29e9-49f5-b36d-\
+2af054bb688e"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1434, 752.25},
+WindowMargins->{{3, Automatic}, {Automatic, 3}},
+Magnification:>0.9 Inherited,
+FrontEndVersion->"14.0 for Linux x86 (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"136fe732-be3d-4efc-9ebd-8ca46d284ba5"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 179, 3, 88, "Title",ExpressionUUID->"f912d3f9-e93a-43aa-a9ab-bc976f2db7ec"],
+Cell[762, 27, 260, 6, 47, "Subtitle",ExpressionUUID->"e4c9baff-fe8d-4e28-83dc-89d946feb8e0"],
+Cell[1025, 35, 244, 4, 26, "Input",ExpressionUUID->"45aa6525-4244-4d8d-9f63-1284e47de539"],
+Cell[CellGroupData[{
+Cell[1294, 43, 171, 3, 60, "Section",ExpressionUUID->"128df0f9-d75c-4c67-8462-7ba1db285de0"],
+Cell[1468, 48, 199, 3, 31, "Text",ExpressionUUID->"02946d72-3b06-4b63-8840-bbcd39dabd6e"],
+Cell[1670, 53, 637, 13, 65, "Input",ExpressionUUID->"cc209a06-3720-4a5c-b644-60d1b1586eff"],
+Cell[2310, 68, 970, 23, 140, "Input",ExpressionUUID->"0be50e2e-1022-46a1-8886-1415444f4da5"],
+Cell[3283, 93, 201, 3, 31, "Text",ExpressionUUID->"bceb8eb7-0ef6-40a8-bcb0-2145864e6966"],
+Cell[3487, 98, 555, 12, 65, "Input",ExpressionUUID->"c6cb8050-28b1-4314-9855-cc44b4db8ef0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4079, 115, 173, 3, 60, "Section",ExpressionUUID->"c8fd9202-ee18-4195-a62e-a7054ed6ae19"],
+Cell[4255, 120, 202, 3, 31, "Text",ExpressionUUID->"0e37ae9d-48ee-4ae2-a3c1-1208929c3154"],
+Cell[4460, 125, 280, 7, 26, "Input",ExpressionUUID->"be1589a6-877d-4f35-8ac2-c14420beb8dc"],
+Cell[4743, 134, 372, 8, 31, "Text",ExpressionUUID->"d2e66fe5-80ac-4dde-9380-8c42b33be6d6"],
+Cell[5118, 144, 279, 6, 26, "Input",ExpressionUUID->"0e563d6a-f11f-455c-a1f8-dc061a6f4e8f"],
+Cell[5400, 152, 201, 3, 31, "Text",ExpressionUUID->"46784cf8-e75c-4ac2-8553-e4a87c3b9af6"],
+Cell[5604, 157, 1778, 33, 84, "Input",ExpressionUUID->"fc2b654b-252f-45bc-a7c1-c6fb1e020f2c"],
+Cell[CellGroupData[{
+Cell[7407, 194, 176, 3, 48, "Subsection",ExpressionUUID->"9ec8cb8c-12d7-4d93-9f26-690ca1b8ab7d"],
+Cell[7586, 199, 172, 3, 31, "Text",ExpressionUUID->"7d5a9fac-29e9-49f5-b36d-2af054bb688e"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
