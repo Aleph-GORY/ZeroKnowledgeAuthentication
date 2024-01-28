@@ -1,6 +1,7 @@
 pageFunction[choice_Association] := Module[{user, pass},
     user = choice["Username"];
-    prob = choice["PublicProblem"];
+    prob =  BinaryDeserialize@ToExpression[choice["PublicProblem"]];
+    (* prob = BinaryDeserialize[serial]; *)
     Global`zkUser = <|
         "username" -> user,
         "publicproblem" -> prob,
@@ -8,15 +9,18 @@ pageFunction[choice_Association] := Module[{user, pass},
     |>;
     Column[{
         Style["New user created", "Section"],
-        "Registered new user",
-        Style["Username:   " <> user, Italic],
-        Style["PublicProblem:   " <> prob, Italic],
-        "the server has zero knowledge about the user's PrivateSSolution."
+        Style["Username:   ", Bold],
+        user,
+        Style["PublicProblem:   ", Bold],
+        ExportForm[prob, "PNG"],
     }]
 ];
 
 FormPage[
-    {"Username" -> "String", "PublicProblem" -> "String"}, 
+    {
+        "Username" -> "String", 
+        "PublicProblem" -> "String"
+    }, 
     pageFunction, 
     AppearanceRules -> <|
         "Title" -> "Register new user",
