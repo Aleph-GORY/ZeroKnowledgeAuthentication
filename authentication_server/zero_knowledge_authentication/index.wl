@@ -4,8 +4,9 @@ serverData = If[
         Column[{
             Style[user["Username"], Bold, Underlined, 20],
             "Registration Date: " <> user["registrationDate"],
-            "PublicProblem: " <> user["PublicProblem"],
-            Style[".", 20, White],
+            "PublicProblem: ",
+            ExportForm[user["PublicProblem"], "PNG"],
+            Style[".", 20, White]
         }],
         {user, ZeroKnowledgeUsers}
     ], 
