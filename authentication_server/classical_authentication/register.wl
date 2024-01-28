@@ -3,8 +3,8 @@ apiFunction[params_Association] := Module[{},
         "Username " <> params["Username"] <> " already exists.",
         Global`classicalUsers = Append[Global`classicalUsers,
             params["Username"] -> <|
-            "username" -> params["Username"],
-            "password" -> choice["Password"],
+            "Username" -> params["Username"],
+            "Password" -> params["Password"],
             "registrationDate" -> DateString[]
         |>];
         "Successfully created new user " <> params["Username"] <> " in the authentication server."
