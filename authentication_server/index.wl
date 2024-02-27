@@ -6,7 +6,13 @@ FormFunction[
     HTTPRedirect[#AuthenticationMethod] &,
     AppearanceRules -> <|
         "Title" -> "Welcome to ZeroKnowledgeAuthentication server",
-        "Description" -> TemplateApply["This is a demo of ArmandoCruz/ZeroKnowledgeProofs paclet, running on a `` Kernel.", $VersionNumber], 
+        "Description" -> TemplateApply[
+            "This is a demo of ArmandoCruz/ZeroKnowledgeProofs ``, running on a `` Kernel.",
+            {
+                Information[PacletObject["ArmandoCruz/ZeroKnowledgeProofs"], "Version"],
+                $VersionNumber
+            }
+        ], 
         "SubmitLabel" -> "Start demo!"
     |>
 ]
