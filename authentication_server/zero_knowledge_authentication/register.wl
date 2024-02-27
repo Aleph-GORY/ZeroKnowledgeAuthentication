@@ -5,7 +5,7 @@ apiFunction[params_Association] := Module[{},
         Global`ZeroKnowledgeUsers = Append[Global`ZeroKnowledgeUsers,
             params["Username"] -> <|
             "Username" -> params["Username"],
-            "PublicProblem" -> BinaryDeserialize@ByteArray@ImportString[params["PublicProblem"], "Byte"],
+            "PublicProblem" -> Uncompress@BinaryDeserialize@ByteArray@ImportString[params["PublicProblem"], "Byte"],
             "CipherProblem" -> {},
             "Query" -> Null,
             "registrationDate" -> DateString[]

@@ -6,6 +6,8 @@ serverData = If[
             "Registration Date: " <> user["registrationDate"],
             "PublicProblem: ",
             ExportForm[user["PublicProblem"], "PNG"],
+            "CipherProblem: ",
+            ExportForm[user["CipherProblem"], "PNG"],
             Style[".", 20, White]
         }],
         {user, ZeroKnowledgeUsers}

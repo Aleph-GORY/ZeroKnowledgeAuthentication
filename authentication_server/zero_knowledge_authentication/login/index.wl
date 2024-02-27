@@ -1,20 +1,21 @@
 verifyFunction[params_Association] := Module[
     {
         username = params["Username"],
-        response = params["Response"]
+        response = BinaryDeserialize@ByteArray@ImportString[
+            params["Response"], "Byte"
+        ]
     },
     user = Global`ZeroKnowledgeUsers[username];
-
-    (* If[
-        VerifyZeroKnowledgeProof[
+    If[
+        And@@VerifyZeroKnowledgeProof[
             user["PublicProblem"],
             user["CipherProblem"],
             "query" -> user["Query"],
             "response" -> response
-        ], *)
-        "Welcome back, " <> username
-        (* "Zero Knowledge verification failed! Introduce the correct credentials of an existing user."
-    ] *)
+        ],
+        "Welcome back, " <> username,
+        "Zero Knowledge verification failed! Introduce the correct credentials of an existing user."
+    ]
 ]
 
 APIFunction[
