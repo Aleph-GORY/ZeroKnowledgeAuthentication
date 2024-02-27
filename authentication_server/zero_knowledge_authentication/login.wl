@@ -1,27 +1,39 @@
-pageFunction[choice_Association] := Module[{user, pass},
-    user = choice["Username"];
-    pass = choice["Password"];
+apiFunction[params_Association] := Module[{},
     If[
-        user == Global`classicalUser[["username"]] && pass == Global`classicalUser[["password"]],
-        Column[{
-            Style["Welcome back " <> user, "Section"],
-            "Your user information is",
-            Style["Username:   " <> user, Italic],
-            Style["Password:   " <> pass, Italic]
-        }],
-        Column[{
-            Style["Wrong user or password", "Section"],
-            "Introduce the credentials of an existing user."
-        }]
+        params["Response"] === Null,
+        queryFunction[params["Username"],params["CipherProblem"]],
+        verifyFunction[params["Username"],params["Response"]]
     ]
 ];
 
-FormPage[
-    {"Username" -> "String", "PublicWitness" -> "String"}, 
-    pageFunction, 
-    AppearanceRules -> <|
-        "Title" -> "Login using your password",
-        "Description" -> "In classical authentication, a private secret is trusted to the server to be used as proof of authenticity."
-    |>,
-    PageTheme -> "Blue"
+queryFunction[username_, cipherProblem_] := Module[{},
+    query = GenerateZeroKnowledgeQuery[cipherProblem];
+    Global`ZeroKnowledgeUsers[username] = Append[
+        Global`ZeroKnowledgeUsers[username],
+        "Query" -> query
+    ];
+    ExportString[BinarySerialize[query], "Byte"]
+]
+
+verifyFunction[username_, response_] := Module[{},
+    user = Global`ZeroKnowledgeUsers[username];
+    If[
+        VerifyZeroKnowledgeProof[
+            user["PublicProblem"],
+            user["CipherProblem"],
+            "query" -> user["Query"],
+            "response" -> response
+        ],
+        "Welcome back, " <> username,
+        "Zero Knowledge verification failed! Introduce the correct credentials of an existing user."
+    ]
+]
+
+APIFunction[
+    {
+        "Username" -> "String", 
+        "CipherProblem" -> "String" -> Null,
+        "Response" -> "String" -> Null
+    }, apiFunction, 
+    "JSON"
 ]
