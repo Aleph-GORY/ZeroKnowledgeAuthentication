@@ -5,8 +5,9 @@ apiFunction[params_Association] := Module[{},
         Global`ZeroKnowledgeUsers = Append[Global`ZeroKnowledgeUsers,
             params["Username"] -> <|
             "Username" -> params["Username"],
-            (* "PublicProblem" -> params["PublicProblem"], *)
             "PublicProblem" -> BinaryDeserialize@ByteArray@ImportString[params["PublicProblem"], "Byte"],
+            "CipherProblem" -> {},
+            "Query" -> Null,
             "registrationDate" -> DateString[]
         |>];
         "Successfully created new user " <> params["Username"] <> " in the authentication server."
